@@ -1,0 +1,69 @@
+syntax = "proto2";
+
+message Node {
+  required fixed64 key=1;
+  required fixed32 address=2;
+  required uint32 port=3;
+}
+
+message NotifyRequest {
+  required Node node=1;
+}
+
+message NotifyResponse { }
+
+message FindSuccRequest {
+  required fixed64 key=1;
+}
+
+message FindSuccResponse {
+  required Node node=1;
+}
+
+message rFindSuccRequest {
+  required fixed64 key=1;
+  required Node requester=2;
+}
+
+message rFindSuccResponse {
+  required fixed64 key=1;
+  required Node node=2;
+}
+
+message GetPredRequest { }
+message GetPredResponse {
+  required Node node=1;
+}
+
+message CheckPredRequest { }
+message CheckPredResponse { }
+
+message GetSuccListRequest { }
+message GetSuccListResponse {
+  repeated Node successors=1;
+}
+
+message ChordMessage {
+  required uint32 version=1 [default = 417];
+  optional int32 query_id=14;
+
+  oneof msg {
+    NotifyRequest notify_req=2;
+    NotifyResponse notify_resp=3;
+
+    FindSuccRequest find_succ_req=4;
+    FindSuccResponse find_succ_resp=5;
+
+    GetPredRequest get_pred_req=6;
+    GetPredResponse get_pred_resp=7;
+
+    CheckPredRequest check_pred_req=8;
+    CheckPredResponse check_pred_resp=9;
+
+    GetSuccListRequest get_succ_list_req=10;
+    GetSuccListResponse get_succ_list_resp=11;
+
+    rFindSuccRequest r_find_succ_req=12;
+    rFindSuccResponse r_find_succ_resp=13;
+  }
+}
