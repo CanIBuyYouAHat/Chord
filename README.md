@@ -19,8 +19,11 @@ With main running, and **port 1234** specified, simply run the test with ```./te
 - --jp <Number> The port of the Chord node whose ring this node will join 0 < port <= 65535
 
 Example usage:
+
 ```./main -p 1234 --sp 5 --ffp 6 --cpp 7 ```
+
 To join an existing Chord ring:
+
 ```./main -p 1234 --ja 128.10.134.55 --jp 4180 --sp 5 --ffp 6 --cpp 7 ```
 
 
